@@ -15,4 +15,12 @@ DocumentType.init(
             allowNull: false,
         },
     }
-)
+    {
+        sequelize,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'DocumentType',
+    }
+);
+
+module.exports = DocumentType;

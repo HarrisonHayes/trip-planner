@@ -29,5 +29,13 @@ Trip.init(
                 key: 'id',
             }
         },
+    },
+    {
+        sequelize,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'Trip',
     }
-)
+);
+
+module.exports = Trip;
