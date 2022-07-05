@@ -12,9 +12,14 @@
     <h1>Welcome to our Trip Planner</h1>
   </header>
   <nav>
-     {{#if logged_in}}
+     
     <nav>
+      {{#if logged_in}}
       <button class="btn" id="logout">logout</button>
+      {{else}}
+      <button class="btn" id="login">Login</button>
+      <button class="btn" id="signup">Sign up</button>
+      {{/if}}
     </nav>
     <a href="/">Home</a>
   </nav>
