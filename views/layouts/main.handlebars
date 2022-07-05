@@ -11,9 +11,13 @@
 
 <body>
   <header>
-    <h1>Welcome to the Travel Planner</h1>
+    <h1>Welcome to our Trip Planner</h1>
   </header>
   <nav>
+     {{#if logged_in}}
+    <nav>
+      <button class="btn" id="logout">logout</button>
+    </nav>
     <a href="/">Home</a>
   </nav>
   <main>
@@ -21,9 +25,12 @@
       <h2>Creat your Trips!</h2>
     </aside>
     <div class="create-trip">
+      <h2>Checkout these destinations!</h2>
+    </aside>
+    <div class="destinations">
       {{{body}}}
     </div>
   </main>
 </body>
-
 </html>
+
