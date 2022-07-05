@@ -17,6 +17,13 @@ router.get('/login', (req, res) => {
   }
 });
 
+//home page
+router.get("/", async (req, res) => {
+      res.render("homepage", {
+          loggedIn: req.session.loggedIn
+      });
+});
+
 //get a specific trip
 router.get('/trip/:id', isAuth, async (req, res) => {
   //check for login

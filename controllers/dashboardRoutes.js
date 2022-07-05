@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
       attributes: ['id', 'name', 'date_started', 'date_end'],
     });
     const trips = tripData.map((trip) => trip.get({ plain: true }));
-    res.render('dashboard', { trips, loggedIn: req.session.loggedIn });
+    res.render('homepage', { trips, loggedIn: req.session.loggedIn });
   } catch (err) {
     res.status(500).json(err);
   }
