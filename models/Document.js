@@ -32,5 +32,13 @@ Document.init(
                 key: 'id',
             }
         },
+    },
+    {
+        sequelize,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'document',
     }
-)
+);
+
+module.exports = Document;

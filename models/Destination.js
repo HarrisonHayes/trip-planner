@@ -29,5 +29,13 @@ Destination.init(
                 key: 'id',
             }
         },
+    },
+    {
+        sequelize,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'destination',
     }
-)
+);
+
+module.exports = Destination;
