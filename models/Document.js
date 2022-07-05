@@ -18,7 +18,7 @@ Document.init(
             type: DataTypes.TEXT,
             allowNull: false,
         },
-        type__id: {
+        type_id: {
             type: DataTypes.INTEGER,
             references: {
                 model: 'documentType',
