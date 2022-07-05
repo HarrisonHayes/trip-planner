@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trip Planner</title>
+ <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+
+<body>
+  <header>
+    <h1>Welcome to our Trip Planner</h1>
+  </header>
+  <nav>
+     {{#if logged_in}}
+    <nav>
+      <button class="btn" id="logout">logout</button>
+    </nav>
+    <a href="/">Home</a>
+  </nav>
+  <main>
+    <aside>
+      <h2>Checkout these destinations!</h2>
+    </aside>
+    <div class="destinations">
+      {{{body}}}
+    </div>
+  </main>
+</body>
+
+</html>
+
