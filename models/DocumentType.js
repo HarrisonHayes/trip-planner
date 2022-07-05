@@ -20,7 +20,7 @@ DocumentType.init(
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: 'DocumentType',
+    modelName: 'documentType',
   }
 );
 
