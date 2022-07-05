@@ -42,3 +42,4 @@ Document.init(
 );
 
 module.exports = Document;
+

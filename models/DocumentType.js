@@ -24,3 +24,4 @@ DocumentType.init(
 );
 
 module.exports = DocumentType;
+

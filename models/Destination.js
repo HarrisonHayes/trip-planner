@@ -39,3 +39,4 @@ Destination.init(
 );
 
 module.exports = Destination;
+
