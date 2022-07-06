@@ -19,7 +19,7 @@ const callLogout = async (event) => {
 
   const createtrip = async (event) => {
     event.preventDefault();
-    document.location.replace("/api/trip")
+    document.location.replace("/createtrip")
   };
   
   if (logoutBtn) {
