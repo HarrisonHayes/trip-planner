@@ -1,6 +1,6 @@
 :root {
     --pink: #D63384;
-    --moodypink: #701A45;
+    --moody-pink: #701A45;
     --red: #DC3545;
     --pastel: #F05EB3;
     --baby-pink: #F3B6E9;
@@ -9,6 +9,7 @@
   }
   body {
     background-color: var(--dark);
+    color: var(--baby-pink);
     font-family: 'Oswald', sans-serif;
     margin: 0;
     display: flex;
@@ -17,6 +18,18 @@
     justify-content: flex-start;
   }
   
+h2 {
+  color: var(--pink);
+}
+
+a {
+  color: var(--pastel);
+}
+
   .destinations {
+
+  }
+
+  .trip {
 
   }
