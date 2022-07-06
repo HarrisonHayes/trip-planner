@@ -47,6 +47,25 @@ router.get('/createtrip', async (req, res) => {
   }
 });
 
+// delete a trip by id
+router.get('/deletetrip/:id', async (req, res) => {
+  if (req.session.loggedIn) {
+    try {
+      const tripData = await Trip.destroy({ where: { id: req.params.id } });
+      const allTripData = await Trip.findAll({
+        where: { user_id: req.session.user_id },
+        attributes: ['id', 'name', 'date_start', 'date_end'],
+      });
+      const trips = allTripData.map((trip) => trip.get({ plain: true }));
+      res.render('homepage', { trips, loggedIn: req.session.loggedIn });
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  } else {
+    res.render('login');
+  }
+});
+
 //get a specific trip
 router.get('/trip/:id', isAuth, async (req, res) => {
   //check for login

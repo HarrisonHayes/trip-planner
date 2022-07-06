@@ -1,7 +1,8 @@
 
 <div class="card col-11 m-4 p-1">
     <div>
-        <a href="/Trip/{{id}}" class="h2 text-dark">{{name}}</a>
+        <a href="/edittrip/{{id}}"><h2>{{name}}</h2></a>
     </div>
-    <div class="card-body">{{content}}</div>
+    <div class="card-body">{{format_date date_start}} to {{format_date date_end}}</div>
+    <a href="/deletetrip/{{id}}">Delete</a>
 </div>
