@@ -14,8 +14,9 @@
   <nav>
      
     <nav>
-      {{#if logged_in}}
-      <button class="btn" id="logout">logout</button>
+      {{#if loggedIn}}
+      <button class="btn" id="logout">Logout</button>
+      <button class="btn" id="createtrip">Create Trip</button>
       {{else}}
       <button class="btn" id="login">Login</button>
       <button class="btn" id="signup">Sign up</button>
@@ -36,5 +37,6 @@
     </div>
   </main>
 </body>
+<script src="/js/homepage.js"></script>
 </html>
 

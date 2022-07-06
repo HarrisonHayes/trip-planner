@@ -1,13 +1,12 @@
 const { DocumentType } = require('../models');
 
 const documentTypeData = [
-    {
-        name: 'placeholder',
-    },
-    {
-        name: 'placeholder',
-    },
-
+  {
+    name: 'Hotel Reservation',
+  },
+  {
+    name: 'Train ticket Information',
+  },
 ];
 
 const seedDocumentType = () => DocumentType.bulkCreate(documentTypeData);
