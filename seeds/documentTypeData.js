@@ -2,10 +2,10 @@ const { DocumentType } = require('../models');
 
 const documentTypeData = [
   {
-    name: 'placaeholder',
+    name: 'Hotel Reservation',
   },
   {
-    name: 'placeholder',
+    name: 'Train ticket Information',
   },
 ];
 
