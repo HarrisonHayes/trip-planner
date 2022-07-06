@@ -35,13 +35,10 @@ User.init(
         len: [8],
       },
     },
-    date_last_login: {
-      type: DataTypes.DATE,
-      allowNull:false
-    },
     date_created: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: false,
+      defaultValue: DataTypes.NOW
     }
   },
   {
