@@ -1,19 +1,20 @@
-const router = require('express').Router();
+const router = require("express").Router();
 const {
   User,
   Trip,
   Destination,
   Document,
   DocumentType,
-} = require('../models');
-const isAuth = require('../utils/auth');
+} = require("../models");
+const isAuth = require("../utils/auth");
 
 //login handler
-router.get('/login', (req, res) => {
+router.get("/login", (req, res) => {
+  console.log("login handler")
   if (req.session.loggedIn) {
-    res.redirect('/');
+    res.redirect("/");
   } else {
-    res.render('login');
+    res.render("login");
   }
 });
 
@@ -25,33 +26,33 @@ router.get("/", async (req, res) => {
 });
 
 //get a specific trip
-router.get('/trip/:id', isAuth, async (req, res) => {
+router.get("/trip/:id", isAuth, async (req, res) => {
   //check for login
   if ((req.session.loggedIn = false)) {
-    res.redirect('/login');
+    res.redirect("/login");
   } else {
     try {
       const tripData = await Trip.findByPk(req.params.id, {
         include: [
           {
             model: User,
-            attributes: 'name',
+            attributes: "name",
           },
           {
             model: Document,
-            attributes: ['id', 'name', 'content'],
+            attributes: ["id", "name", "content"],
           },
         ],
       });
 
       if (tripData) {
         const trip = tripData.get({ plain: true });
-        res.render('view-trip', {
+        res.render("view-trip", {
           post,
           loggedIn: req.session.loggedIn,
         });
       } else {
-        res.status(404).json({ message: 'No trip found with this id' });
+        res.status(404).json({ message: "No trip found with this id" });
       }
     } catch (err) {
       console.log(err);
