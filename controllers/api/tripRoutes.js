@@ -3,15 +3,18 @@ const { Trip } = require("../../models");
 const isAuth = require("../../utils/auth");
 
 // create new trip
-router.post("/trip", async (req, res) => {
+router.post("/", async (req, res) => {
+    console.log(req.body.name,req.body.date_start,req.body.date_end,req.session.user_id)
     try {
       const tripData = await Trip.create({
         name: req.body.name,
-        start_date: req.body.start_date,
-        end_date: req.body.end_date,
-        user_id: req.session.user_id,
+        date_start: req.body.date_start,
+        date_end: req.body.date_end,
+        user_id: req.session.user_id
       });
+
       const trip = tripData.get({ plain: true });
+      console.log(trip, tripData)
       if (tripData) {
         res.status(201).json({ id: trip.id });
       } else {
