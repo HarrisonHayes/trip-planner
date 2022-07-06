@@ -12,7 +12,7 @@ const login = async (event) => {
       });
 
       if (response.ok) {
-          document.location.replace("/dashboard");
+          document.location.replace("/");
       } else {
           alert(name +" could not log in");
       }
