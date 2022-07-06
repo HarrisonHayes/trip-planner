@@ -12,17 +12,35 @@ const isAuth = require("../utils/auth");
 router.get("/login", (req, res) => {
   console.log("login handler")
   if (req.session.loggedIn) {
-    res.redirect("/");
+    console.log("logged in")
+    res.render("homepage", { loggedIn: req.session.loggedIn });
   } else {
+    console.log("not logged in")
     res.render("login");
   }
 });
 
-//home page
+// home page - get all trips for a user
 router.get("/", async (req, res) => {
-      res.render("homepage", {
-          loggedIn: req.session.loggedIn
-      });
+  try {
+    const tripData = await Trip.findAll({
+      where: { user_id: req.session.user_id },
+      attributes: ["id", "name", "date_start", "date_end"],
+    });
+    const trips = tripData.map((trip) => trip.get({ plain: true }));
+    res.render("homepage", { trips, loggedIn: req.session.loggedIn });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// create a trip
+router.get("/createtrip", async (req, res) => {
+  if (req.session.loggedIn) {
+    res.render("create-trip", { loggedIn: req.session.loggedIn });
+  } else {
+    res.render("login");
+  }
 });
 
 //get a specific trip

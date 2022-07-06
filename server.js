@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 3001;
 //setup session object
 const sess = {
   secret: "trip-planner-secret",
-  cookie: {},
+  cookie: { maxAge: 1200000 },
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
