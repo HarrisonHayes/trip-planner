@@ -56,7 +56,7 @@ router.get('/deletetrip/:id', async (req, res) => {
         where: { user_id: req.session.user_id },
         attributes: ['id', 'name', 'date_start', 'date_end'],
       });
-      const trips = allTripData.map((trip) => trip.get({ plain: true }));
+      const trips = allTripData.map((trip) => Trip.get({ plain: true }));
       res.render('homepage', { trips, loggedIn: req.session.loggedIn });
     } catch (err) {
       res.status(500).json(err);
@@ -66,40 +66,35 @@ router.get('/deletetrip/:id', async (req, res) => {
   }
 });
 
-//get a specific trip
-router.get('/trip/:id', isAuth, async (req, res) => {
-  //check for login
-  if ((req.session.loggedIn = false)) {
-    res.redirect('/login');
-  } else {
-    try {
-      const tripData = await Trip.findByPk(req.params.id, {
+// view/edit a trip by id
+router.get('/edittrip/:id', async (req, res) => {
+  if (req.session.loggedIn) {
+
+      const tripData = await Trip.findOne({
+        where: { id: req.params.id, user_id: req.session.user_id },
+        //here: { id: req.params.id },
+        attributes: ['id', 'name', 'date_start', 'date_end'],
         include: [
           {
             model: User,
-            attributes: 'name',
+            attributes: ['name'],
           },
           {
-            model: Document,
-            attributes: ['id', 'name', 'content'],
+            model: Destination,
+            attributes: ['id','city','country','date_start','date_end'],
           },
+          // {
+          //   model: Document,
+          //   attributes: ['id', 'name', 'content'],
+          // },
         ],
       });
-
-      if (tripData) {
-        const trip = tripData.get({ plain: true });
-        res.render('view-trip', {
-          post,
-          loggedIn: req.session.loggedIn,
-        });
-      } else {
-        res.status(404).json({ message: 'No trip found with this id' });
-      }
-    } catch (err) {
-      console.log(err);
-      res.status(500).json(err);
-    }
+      const trip = tripData.get({ plain: true });
+      res.render('edit-trip', { trip, loggedIn: req.session.loggedIn,wazza: "testing" });
+  } else {
+    res.render('login');
   }
 });
+
 
 module.exports = router;
