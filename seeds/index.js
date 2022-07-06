@@ -1,6 +1,6 @@
 const sequelize = require('../config/connection');
 const seedTrip = require('./tripData');
-const seedDestination = require('./destinationDatat');
+const seedDestination = require('./destinationData');
 const seedDocument = require('./documentData');
 const seedDocumentType = require('./documentTypeData');
 

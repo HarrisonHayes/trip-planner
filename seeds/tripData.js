@@ -5,13 +5,13 @@ const tripData = [
     name: 'Spring Break',
     date_start: 'March 19, 2021 07:00:00',
     date_end: 'March 24, 2021 22:00:00',
-    user_id: 2,
+    user_id: null,
   },
   {
     name: 'Summer Vacation',
     date_start: 'June 19, 2021 07:00:00',
     date_end: 'June 27, 2021 22:00:00',
-    user_id: 4,
+    user_id: null,
   },
 ];
 
