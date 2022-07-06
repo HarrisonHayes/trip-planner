@@ -7,6 +7,7 @@ const documentTypeData = [
     {
         name: 'placeholder',
     },
+
 ];
 
 const seedDocumentType = () => DocumentType.bulkCreate(documentTypeData);
