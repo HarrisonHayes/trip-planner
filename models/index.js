@@ -31,12 +31,12 @@ Document.belongsTo(Destination, {
   foreignKey: 'destination_id',
 });
 
-Document.hasOne(DocumentType, {
-  foreignKey: 'type_id',
-});
+// Document.hasOne(DocumentType, {
+//   foreignKey: 'type_id',
+// });
 
-DocumentType.belongsTo(Document, {
-  foreignKey: 'type_id',
-});
+// DocumentType.belongsTo(Document, {
+//   foreignKey: 'type_id',
+// });
 
 module.exports = { User, Trip, Destination, Document, DocumentType };
