@@ -1,5 +1,13 @@
 {{#if loggedIn}}
-<p>Welcome back</p>
+{{!-- <p>Welcome back</p> --}}
+{{#each trips as |trip|}}
+{{> trip}}
+{{/each}}
+
+
+
+
+
 {{else}}
 <p>Sign up for a new account here</p>
 <p>or if you're already a member, sign in here</p>
