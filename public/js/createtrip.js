@@ -8,7 +8,7 @@ const createTrip = async (event) => {
     const jsonBody=JSON.stringify({ name, date_start, date_end })
     console.log(jsonBody);
     if (name && date_start && date_end) {
-        const response = await fetch("/trips", {
+        const response = await fetch("/api/trips", {
             method: "POST",
             body: jsonBody,
             headers: { "Content-Type": "application/json" },
