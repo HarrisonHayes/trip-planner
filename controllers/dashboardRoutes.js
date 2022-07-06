@@ -36,19 +36,7 @@ router.put("/trip/:id", async (req, res) => {
   }
 });
 
-// delete a trip by id
-router.delete("/trip/:id", async (req, res) => {
-  try {
-    const tripData = await Trip.destroy({ where: { id: req.params.id } });
-    if (tripData) {
-      res.status(200).json(tripData);
-    } else {
-      res.status(404).json({ message: "No trip was found with this id" });
-    }
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+
 
 // create new trip page
 router.get("/post", async (req, res) => {
