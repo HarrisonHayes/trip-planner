@@ -11,9 +11,13 @@ Destination.init(
       allowNull: false,
       primaryKey: true,
     },
-    name: {
+    city: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    country: {
+      type: DataTypes.STRING,
+      allowNull: false
     },
     date_start: {
       type: DataTypes.DATE,
