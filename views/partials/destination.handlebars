@@ -1,7 +1,20 @@
-<div class="card w-100 my-2">
-    <div class="card-title d-flex justify-content-between px-2">
-        <h2><img src="/images/{{iso}}.gif" alt="{{country}} flag">{{iso}} {{city}}, {{country}}</h2>
+<div class="card w-75 my-2">
+    <div class="card-title d-flex justify-content-between px-2 destcard">
+        <h2>        <img
+  src="https://flagcdn.com/32x24/{{lc iso}}.png"
+  srcset="https://flagcdn.com/64x48/{{lc iso}}.png 2x,
+    https://flagcdn.com/96x72/{{lc iso}}.png 3x"
+  width="32"
+  height="24"
+  alt="{{country}}">&nbsp;{{city}}, {{country}}&nbsp;        <img
+  src="https://flagcdn.com/32x24/{{lc iso}}.png"
+  srcset="https://flagcdn.com/64x48/{{lc iso}}.png 2x,
+    https://flagcdn.com/96x72/{{lc iso}}.png 3x"
+  width="32"
+  height="24"
+  alt="{{country}}"></h2>
         <div class="card-body">{{format_date date_start}} to {{format_date date_end}}</div>
-        <a href="/api/destinations/{{id}}">Delete</a>
+        <a href="/api/destinations/delete/{{id}}">Delete</a>
+
     </div>
 </div>

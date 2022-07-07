@@ -58,6 +58,7 @@ const addDestination = async (event) => {
 
     if (response.ok) {
       console.log('added destination');
+      window.location.reload();
     } else {
       alert('Error adding destination');
     }

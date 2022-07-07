@@ -16,4 +16,10 @@ module.exports = {
     const thisDate = new Date(date);
     return thisDate.toISOString().substring(0,10);
   },
+  lc: (text) => {
+    if(text){
+      return (text.toLowerCase());
+    } 
+    return "";
+  },
 };
