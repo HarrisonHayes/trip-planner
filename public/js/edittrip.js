@@ -6,9 +6,15 @@ const updateTrip = async (event) => {
   const date_start = document.querySelector('#trip-start-date').value.trim();
   const date_end = document.querySelector('#trip-end-date').value.trim();
 
-  const jsonBody = JSON.stringify({ id, name, date_start, date_end });
-  console.log(jsonBody);
-  if (id && name && date_start && date_end) {
+  const validationResult = validateTripInputs(
+    name,
+    date_start,
+    date_end
+  );
+  if (validationResult.length == 0) {
+    const jsonBody = JSON.stringify({ id, name, date_start, date_end });
+    console.log(jsonBody);
+
     const response = await fetch('/api/trips/' + id, {
       method: 'PUT',
       body: jsonBody,
@@ -20,6 +26,8 @@ const updateTrip = async (event) => {
     } else {
       alert('Error updating trip');
     }
+  } else {
+    alert(validationResult.join('\n'));
   }
 };
 
@@ -34,8 +42,13 @@ const addDestination = async (event) => {
     .value.trim();
   const date_end = document.querySelector('#destination-end-date').value.trim();
 
-  const validationResult=validateDestinationInputs(city, countryRaw, date_start, date_end);
-  if (validationResult.length==0) {
+  const validationResult = validateDestinationInputs(
+    city,
+    countryRaw,
+    date_start,
+    date_end
+  );
+  if (validationResult.length == 0) {
     let countryIso = '';
     let countryName = '';
     if (countryRaw.includes('|')) {
@@ -54,21 +67,20 @@ const addDestination = async (event) => {
       date_start,
       date_end,
     });
-    if (id && city && date_start && date_end) {
-      const response = await fetch('/api/destinations/' + id, {
-        method: 'POST',
-        body: jsonBody,
-        headers: { 'Content-Type': 'application/json' },
-      });
 
-      if (response.ok) {
-        window.location.reload();
-      } else {
-        alert('Error adding destination');
-      }
+    const response = await fetch('/api/destinations/' + id, {
+      method: 'POST',
+      body: jsonBody,
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    if (response.ok) {
+      window.location.reload();
+    } else {
+      alert('Error adding destination');
     }
   } else {
-    alert(validationResult.join("\n"));
+    alert(validationResult.join('\n'));
   }
 };
 
@@ -102,7 +114,7 @@ document.querySelector('.collapsible-dest').addEventListener('click', function (
 
 const validateDestinationInputs = (city, country, date_start, date_end) => {
   let validationErrors = [];
-  if (!city) {
+  if (city == '') {
     validationErrors.push('Enter a valid city');
   }
   if (country == '0') {
@@ -114,31 +126,28 @@ const validateDestinationInputs = (city, country, date_start, date_end) => {
   if (date_start == '') {
     validationErrors.push('Enter a valid end date');
   }
-  if (date_start != "" && date_end != "" && date_end < date_start) {
+  if (date_start != '' && date_end != '' && date_end < date_start) {
     validationErrors.push('Enter a trip end date after the start date');
   }
-    return validationErrors;
+  return validationErrors;
 };
 
-const validateTripInputs = (city, country, date_start, date_end) => {
-    let validationErrors = [];
-    if (!city) {
-      validationErrors.push('Enter a valid city');
-    }
-    if (country == '0') {
-      validationErrors.push('Enter a valid country');
-    }
-    if (date_start == '') {
-      validationErrors.push('Enter a valid start date');
-    }
-    if (date_start == '') {
-      validationErrors.push('Enter a valid end date');
-    }
-    if (date_start != "" && date_end != "" && date_end < date_start) {
-      validationErrors.push('Enter a trip end date after the start date');
-    }
-      return validationErrors;
-  };
+const validateTripInputs = (name, date_start, date_end) => {
+  let validationErrors = [];
+  if (name == '') {
+    validationErrors.push('Enter a trip name');
+  }
+  if (date_start == '') {
+    validationErrors.push('Enter a valid start date');
+  }
+  if (date_start == '') {
+    validationErrors.push('Enter a valid end date');
+  }
+  if (date_start != '' && date_end != '' && date_end < date_start) {
+    validationErrors.push('Enter a trip end date after the start date');
+  }
+  return validationErrors;
+};
 
 
 document.querySelector('.trip-form').addEventListener('submit', updateTrip);
