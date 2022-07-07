@@ -1,4 +1,5 @@
 const moment = require('moment');
+
 // const { condition } = require('sequelize');
 // const { get } = require('../controllers/homeRoutes');
 // const openWeathermapKey = '26430011a9e304ff62d863402ab09fcc';
