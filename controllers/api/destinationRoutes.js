@@ -49,6 +49,23 @@ router.post('/:id', async (req, res) => {
   //   }
 });
 
+router.get('/deletedestination/:id', async (req, res) => {
+  if (req.session.loggedIn) {
+    try {
+      const destDelete = await Destination.destroy({ where: { id: req.params.id } });
+      const tripData = await Trip.findOne({
+        where: { id: destDelete.trip_id, user_id: req.session.user_id },
+      });
+      const trip = tripData.get({ plain:true });
+      res.render('edit-trip', { trip, loggedIn: req.session.loggedIn });
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  } else {
+    res.render('login');
+  }
+});
+
 // // add a destination
 // router.post('/:id', async (req, res) => {
 //     console.log("edit trip 0")
