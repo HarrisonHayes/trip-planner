@@ -4,6 +4,7 @@ const isAuth = require('../../utils/auth');
 
 // add a destination
 router.post('/:id', async (req, res) => {
+
   try {
     const destinationData = await Destination.create({
       city: req.body.city,
@@ -17,7 +18,8 @@ router.post('/:id', async (req, res) => {
 
     const destination = destinationData.get({ plain: true });
     if (destination) {
-      tripData = await Trip.findOne({
+
+      const tripData = await Trip.findOne({
         where: { id: req.params.id, user_id: req.session.user_id },
         attributes: ['id', 'name', 'date_start', 'date_end'],
         include: [
@@ -27,7 +29,8 @@ router.post('/:id', async (req, res) => {
           },
           {
             model: Destination,
-            attributes: ['id', 'city', 'country', 'date_start', 'date_end'],
+            attributes: ['id', 'city', 'iso', 'country', 'date_start', 'date_end'],
+            order: [["date_start", "ASC"], ["date_end", "ASC"]],
           },
           // {
           //   model: Document,
@@ -37,7 +40,9 @@ router.post('/:id', async (req, res) => {
       });
       const trip = tripData.get({ plain: true });
 
+      console.log(trip);
       res.render('edit-trip', { trip, loggedIn: req.session.loggedIn });
+
     } else {
       res
         .status(500)
@@ -48,19 +53,42 @@ router.post('/:id', async (req, res) => {
   }
 });
 
-router.get('/deletedestination/:id', async (req, res) => {
+router.get('/delete/:id', async (req, res) => {
   if (req.session.loggedIn) {
-    try {
+    const destination = await Destination.findOne({
+      where: { id: req.params.id },
+    });
+    if (destination) {
+      const tripId = destination.trip_id;
+      console.log(tripId);
+      //try {
       const destDelete = await Destination.destroy({
         where: { id: req.params.id },
       });
       const tripData = await Trip.findOne({
-        where: { id: destDelete.trip_id, user_id: req.session.user_id },
+        where: { id: tripId, user_id: req.session.user_id },
+        attributes: ['id', 'name', 'date_start', 'date_end'],
+        include: [
+          {
+            model: User,
+            attributes: ['name'],
+          },
+          {
+            model: Destination,
+            attributes: ['id', 'city', 'country', 'iso', 'date_start', 'date_end'],
+            order: [["date_start", "ASC"], ["date_end", "ASC"]],
+          },
+          // {
+          //   model: Document,
+          //   attributes: ['id', 'name', 'content'],
+          // },
+        ],
       });
       const trip = tripData.get({ plain: true });
       res.render('edit-trip', { trip, loggedIn: req.session.loggedIn });
-    } catch (err) {
-      res.status(500).json(err);
+      // } catch (err) {
+      //   res.status(500).json(err);
+      // }
     }
   } else {
     res.render('login');

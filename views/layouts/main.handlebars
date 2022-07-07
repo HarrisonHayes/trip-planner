@@ -8,12 +8,10 @@
   <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
-  <header>
-    <h1>Welcome to our Trip Planner</h1>
-  </header>
-  <nav class="nav-bar-style">
-     
-    <nav class="indv-nav">
+  <header class="bg-dark text-light p-4" style="text-align: center; justify-content: center;">
+    <h1>Trip Planner</h1>
+  </header>    
+    <nav>
       {{#if loggedIn}}
       <button class="btn" id="logout">Logout</button>
       <button class="btn" id="createtrip">Create Trip</button>
@@ -22,8 +20,7 @@
       <button class="btn" id="signup">Sign up</button>
       {{/if}}
     </nav>
-    <a href="/" class="home-btn">Home</a>
-  </nav>
+    <a href="/">Home</a>
   <main>
    
     <div class="destinations">
@@ -31,6 +28,9 @@
     </div>
   </main>
 </body>
+<footer class="bg-dark text-light p-4" style="text-align: center; justify-content: center;">
+  THE TRIP PLANNER MADE BY CHRIS, SILA, VICTORIA AND VARUN!
+</footer>
 <script src="/js/homepage.js"></script>
 </html>
 

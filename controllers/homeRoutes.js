@@ -3,8 +3,8 @@ const {
   User,
   Trip,
   Destination,
-  Document,
-  DocumentType,
+  // Document,
+  // DocumentType,
 } = require('../models');
 const isAuth = require('../utils/auth');
 
@@ -27,6 +27,10 @@ router.get('/', async (req, res) => {
       const tripData = await Trip.findAll({
         where: { user_id: req.session.user_id },
         attributes: ['id', 'name', 'date_start', 'date_end'],
+        order: [
+          ['date_start', 'ASC'],
+          ['date_end', 'ASC'],
+        ],
       });
       const trips = tripData.map((trip) => trip.get({ plain: true }));
       res.render('homepage', { trips, loggedIn: req.session.loggedIn });
@@ -56,7 +60,7 @@ router.get('/deletetrip/:id', async (req, res) => {
         where: { user_id: req.session.user_id },
         attributes: ['id', 'name', 'date_start', 'date_end'],
       });
-      const trips = allTripData.map((trip) => Trip.get({ plain: true }));
+      const trips = allTripData.map((trip) => trip.get({ plain: true }));
       res.render('homepage', { trips, loggedIn: req.session.loggedIn });
     } catch (err) {
       res.status(500).json(err);
@@ -71,8 +75,11 @@ router.get('/edittrip/:id', async (req, res) => {
   if (req.session.loggedIn) {
     const tripData = await Trip.findOne({
       where: { id: req.params.id, user_id: req.session.user_id },
-      //here: { id: req.params.id },
       attributes: ['id', 'name', 'date_start', 'date_end'],
+      order: [
+        [Destination, 'date_start', 'ASC'],
+        [Destination, 'date_end', 'ASC'],
+      ],
       include: [
         {
           model: User,
@@ -80,7 +87,14 @@ router.get('/edittrip/:id', async (req, res) => {
         },
         {
           model: Destination,
-          attributes: ['id', 'city', 'country', 'date_start', 'date_end'],
+          attributes: [
+            'id',
+            'city',
+            'iso',
+            'country',
+            'date_start',
+            'date_end',
+          ],
         },
         // {
         //   model: Document,

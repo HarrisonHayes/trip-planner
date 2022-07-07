@@ -52,9 +52,11 @@ a {
   color: var(--pastel);
 };
 
-.destinations {
-
-};
+ .destcard {
+    text-align: center;
+    background-color: var(--baby-pink);
+    color: var(--moody-pink);
+ };
 
 .trip {
 
