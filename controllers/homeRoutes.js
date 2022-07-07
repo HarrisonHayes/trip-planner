@@ -90,7 +90,7 @@ router.get('/edittrip/:id', async (req, res) => {
         ],
       });
       const trip = tripData.get({ plain: true });
-      res.render('edit-trip', { trip, loggedIn: req.session.loggedIn,wazza: "testing" });
+      res.render('edit-trip', { trip, loggedIn: req.session.loggedIn });
   } else {
     res.render('login');
   }
