@@ -19,6 +19,10 @@ Destination.init(
       type: DataTypes.STRING,
       allowNull: false
     },
+    iso: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     date_start: {
       type: DataTypes.DATE,
       allowNull: false,
