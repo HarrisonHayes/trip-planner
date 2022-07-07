@@ -4,7 +4,6 @@ const isAuth = require('../../utils/auth');
 
 // add a destination
 router.post('/:id', async (req, res) => {
-
   try {
     const destinationData = await Destination.create({
       city: req.body.city,
@@ -18,7 +17,6 @@ router.post('/:id', async (req, res) => {
 
     const destination = destinationData.get({ plain: true });
     if (destination) {
-
       const tripData = await Trip.findOne({
         where: { id: req.params.id, user_id: req.session.user_id },
         attributes: ['id', 'name', 'date_start', 'date_end'],
@@ -29,8 +27,18 @@ router.post('/:id', async (req, res) => {
           },
           {
             model: Destination,
-            attributes: ['id', 'city', 'iso', 'country', 'date_start', 'date_end'],
-            order: [["date_start", "ASC"], ["date_end", "ASC"]],
+            attributes: [
+              'id',
+              'city',
+              'iso',
+              'country',
+              'date_start',
+              'date_end',
+            ],
+            order: [
+              ['date_start', 'ASC'],
+              ['date_end', 'ASC'],
+            ],
           },
           // {
           //   model: Document,
@@ -42,7 +50,6 @@ router.post('/:id', async (req, res) => {
 
       console.log(trip);
       res.render('edit-trip', { trip, loggedIn: req.session.loggedIn });
-
     } else {
       res
         .status(500)
@@ -75,8 +82,18 @@ router.get('/delete/:id', async (req, res) => {
           },
           {
             model: Destination,
-            attributes: ['id', 'city', 'country', 'iso', 'date_start', 'date_end'],
-            order: [["date_start", "ASC"], ["date_end", "ASC"]],
+            attributes: [
+              'id',
+              'city',
+              'country',
+              'iso',
+              'date_start',
+              'date_end',
+            ],
+            order: [
+              ['date_start', 'ASC'],
+              ['date_end', 'ASC'],
+            ],
           },
           // {
           //   model: Document,
