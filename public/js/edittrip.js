@@ -3,8 +3,8 @@ const updateTrip = async (event) => {
 
   const id = document.querySelector('#trip-id').value.trim();
   const name = document.querySelector('#trip-name').value.trim();
-  const date_start = document.querySelector('#start-date').value.trim();
-  const date_end = document.querySelector('#end-date').value.trim();
+  const date_start = document.querySelector('#trip-start-date').value.trim();
+  const date_end = document.querySelector('#trip-end-date').value.trim();
 
   const jsonBody = JSON.stringify({ id, name, date_start, date_end });
   console.log(jsonBody);
@@ -29,34 +29,35 @@ const addDestination = async (event) => {
   const id = document.querySelector('#trip-id').value.trim();
   const city = document.querySelector('#destination-city').value.trim();
   let countryRaw = document.querySelector('#destination-country').value.trim();
-  let countryISO = '';
+  let countryIso = '';
   let countryName = '';
   if (countryRaw.includes('|')) {
     countryRaw = countryRaw.split('|');
-    countryISO = countryRaw[0];
+    countryIso = countryRaw[0];
     countryName = countryRaw[1];
+  } else {
+    countryName = countryRaw;
   }
-  const date_start = document.querySelector('#start-date').value.trim();
-  const date_end = document.querySelector('#end-date').value.trim();
+  const date_start = document.querySelector('#destination-start-date').value.trim();
+  const date_end = document.querySelector('#destination-end-date').value.trim();
 
   const jsonBody = JSON.stringify({
     id,
     city,
     countryName,
-    countryISO,
+    countryIso,
     date_start,
     date_end,
   });
-  console.log(jsonBody);
   if (id && city && date_start && date_end) {
     const response = await fetch('/api/destinations/' + id, {
-      method: 'PUT',
+      method: 'POST',
       body: jsonBody,
       headers: { 'Content-Type': 'application/json' },
     });
 
     if (response.ok) {
-      document.location.replace('/');
+      console.log('added destination');
     } else {
       alert('Error adding destination');
     }
