@@ -52,7 +52,7 @@ router.get('/', async (req, res) => {
           console.log(thisTrip.name,thisDest.country)
         }
       }
-      console.log(destinations)
+      
       res.render('homepage', { trips, loggedIn: req.session.loggedIn });
     // } catch (err) {
     //   res.status(500).json(err);
