@@ -1,5 +1,12 @@
-<div class="card col-5 m-2 align-items-center p-2">
-    <h2 class="page-title">Edit Trip</h2>
+<h2 class="trip-page-title">
+    {{trip.name}}
+</h2>
+
+<button type="button" class="collapsible-edit">
+    <h3 class="page-title" id="edit-btn">Edit Trip -</h3>
+</button>
+<div class="content content-edit card col-5 m-2 align-items-center p-2" style="display: block;">
+
     <form class="form trip-form">
         <input type="hidden" id="trip-id" name="tripid" value="{{trip.id}}">
         <div class="form-group">
@@ -8,17 +15,21 @@
         </div>
         <div class="form-group">
             <label for="start-date">Start Date</label>
-            <input class="form-input" type="date" id="trip-start-date"  value="{{format_date_input trip.date_start}}"/>
+            <input class="form-input" type="date" id="trip-start-date" value="{{format_date_input trip.date_start}}" />
         </div>
         <div class="form-group">
             <label for="end-date">End Date</label>
-            <input class="form-input" type="date" id="trip-end-date" value="{{format_date_input trip.date_end}}"/>
+            <input class="form-input" type="date" id="trip-end-date" value="{{format_date_input trip.date_end}}" />
         </div>
         <div class="form-group">
             <button id="savechanges" class="btn btn-primary">Save Changes</button>
         </div>
     </form>
-    <h2 class="page-title">Add Destination</h2>
+</div>
+<button type="button" class="collapsible-dest">
+    <h3 class="page-title" id="dest-btn">Add Destination +</h3>
+</button>
+<div class="content content-edit card col-5 m-2 align-items-center p-2" style="display: none;">
     <form class="form destination-form">
         <div class="form-group">
             <label for="destination-city">City</label>
@@ -79,7 +90,8 @@
                 <option value="CO|Colombia">Colombia</option>
                 <option value="KM|Comoros">Comoros</option>
                 <option value="CG|Congo">Congo</option>
-                <option value="CD|Congo, the Democratic Republic of the">Congo, the Democratic Republic of the</option>
+                <option value="CD|Congo, the Democratic Republic of the">Congo, the Democratic Republic of the
+                </option>
                 <option value="CK|Cook Islands">Cook Islands</option>
                 <option value="CR|Costa Rica">Costa Rica</option>
                 <option value="CI|C te d'Ivoire">C te d'Ivoire</option>
@@ -145,7 +157,8 @@
                 <option value="KZ|Kazakhstan">Kazakhstan</option>
                 <option value="KE|Kenya">Kenya</option>
                 <option value="KI|Kiribati">Kiribati</option>
-                <option value="KP|Korea, Democratic People's Republic of">Korea, Democratic People's Republic of</option>
+                <option value="KP|Korea, Democratic People's Republic of">Korea, Democratic People's Republic of
+                </option>
                 <option value="KR|Korea, Republic of">Korea, Republic of</option>
                 <option value="KW|Kuwait">Kuwait</option>
                 <option value="KG|Kyrgyzstan">Kyrgyzstan</option>
@@ -159,7 +172,8 @@
                 <option value="LT|Lithuania">Lithuania</option>
                 <option value="LU|Luxembourg">Luxembourg</option>
                 <option value="MO|Macao">Macao</option>
-                <option value="MK|Macedonia, the former Yugoslav Republic of">Macedonia, the former Yugoslav Republic of</option>
+                <option value="MK|Macedonia, the former Yugoslav Republic of">Macedonia, the former Yugoslav
+                    Republic of</option>
                 <option value="MG|Madagascar">Madagascar</option>
                 <option value="MW|Malawi">Malawi</option>
                 <option value="MY|Malaysia">Malaysia</option>
@@ -213,7 +227,8 @@
                 <option value="RU|Russian Federation">Russian Federation</option>
                 <option value="RW|Rwanda">Rwanda</option>
                 <option value="BL|Saint Barth lemy">Saint Barth lemy</option>
-                <option value="SH|Saint Helena, Ascension and Tristan da Cunha">Saint Helena, Ascension and Tristan da Cunha</option>
+                <option value="SH|Saint Helena, Ascension and Tristan da Cunha">Saint Helena, Ascension and Tristan
+                    da Cunha</option>
                 <option value="KN|Saint Kitts and Nevis">Saint Kitts and Nevis</option>
                 <option value="LC|Saint Lucia">Saint Lucia</option>
                 <option value="MF|Saint Martin (French part)">Saint Martin (French part)</option>
@@ -234,7 +249,8 @@
                 <option value="SB|Solomon Islands">Solomon Islands</option>
                 <option value="SO|Somalia">Somalia</option>
                 <option value="ZA|South Africa">South Africa</option>
-                <option value="GS|South Georgia and the South Sandwich Islands">South Georgia and the South Sandwich Islands</option>
+                <option value="GS|South Georgia and the South Sandwich Islands">South Georgia and the South Sandwich
+                    Islands</option>
                 <option value="SS|South Sudan">South Sudan</option>
                 <option value="ES|Spain">Spain</option>
                 <option value="LK|Sri Lanka">Sri Lanka</option>
@@ -264,7 +280,8 @@
                 <option value="AE|United Arab Emirates">United Arab Emirates</option>
                 <option value="GB|United Kingdom">United Kingdom</option>
                 <option value="US|United States">United States</option>
-                <option value="UM|United States Minor Outlying Islands">United States Minor Outlying Islands</option>
+                <option value="UM|United States Minor Outlying Islands">United States Minor Outlying Islands
+                </option>
                 <option value="UY|Uruguay">Uruguay</option>
                 <option value="UZ|Uzbekistan">Uzbekistan</option>
                 <option value="VU|Vanuatu">Vanuatu</option>
@@ -292,9 +309,10 @@
         </div>
     </form>
 </div>
-
+<div>
     {{#each trip.destinations as |destination|}}
     {{> destination}}
     {{/each}}
+</div>
 
 <script src="../js/edittrip.js"></script>

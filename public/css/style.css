@@ -22,14 +22,40 @@ h2 {
   color: var(--pink);
 }
 
-a {
-  color: var(--pastel);
+
+/* .dest-border {
+  border: solid;
+  border-color: var(--baby-pink);
+}; */
+
+.collapsible-edit, .collapsible-dest, .btn {
+  border: solid;
+  color: var(--pink);
+  border-color: var(--baby-pink);
+  background-color: black !important;
+  margin-bottom: 2%;
+};
+
+.content {
+  display: none !important;
 }
 
-  .destinations {
+.trip-page-title {
+  color: var(--baby-pink);
+  text-decoration: underline var(--pink);
+  margin-bottom: 3%;
+  margin-top: 2%;
+};
 
-  }
 
-  .trip {
+a {
+  color: var(--pastel);
+};
 
-  }
+.destinations {
+
+};
+
+.trip {
+
+};
