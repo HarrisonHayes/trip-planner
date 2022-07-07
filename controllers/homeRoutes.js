@@ -69,32 +69,30 @@ router.get('/deletetrip/:id', async (req, res) => {
 // view/edit a trip by id
 router.get('/edittrip/:id', async (req, res) => {
   if (req.session.loggedIn) {
-
-      const tripData = await Trip.findOne({
-        where: { id: req.params.id, user_id: req.session.user_id },
-        //here: { id: req.params.id },
-        attributes: ['id', 'name', 'date_start', 'date_end'],
-        include: [
-          {
-            model: User,
-            attributes: ['name'],
-          },
-          {
-            model: Destination,
-            attributes: ['id','city','country','date_start','date_end'],
-          },
-          // {
-          //   model: Document,
-          //   attributes: ['id', 'name', 'content'],
-          // },
-        ],
-      });
-      const trip = tripData.get({ plain: true });
-      res.render('edit-trip', { trip, loggedIn: req.session.loggedIn });
+    const tripData = await Trip.findOne({
+      where: { id: req.params.id, user_id: req.session.user_id },
+      //here: { id: req.params.id },
+      attributes: ['id', 'name', 'date_start', 'date_end'],
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+        {
+          model: Destination,
+          attributes: ['id', 'city', 'country', 'date_start', 'date_end'],
+        },
+        // {
+        //   model: Document,
+        //   attributes: ['id', 'name', 'content'],
+        // },
+      ],
+    });
+    const trip = tripData.get({ plain: true });
+    res.render('edit-trip', { trip, loggedIn: req.session.loggedIn });
   } else {
     res.render('login');
   }
 });
-
 
 module.exports = router;
