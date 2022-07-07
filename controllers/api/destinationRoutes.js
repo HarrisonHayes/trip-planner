@@ -28,6 +28,7 @@ try {
           {
             model: Destination,
             attributes: ['id', 'city', 'iso', 'country', 'date_start', 'date_end'],
+            order: [["date_start", "ASC"], ["date_end", "ASC"]],
           },
           // {
           //   model: Document,
@@ -39,6 +40,7 @@ try {
 
       console.log(trip);
       res.render('edit-trip', { trip, loggedIn: req.session.loggedIn });
+
     } else {
       res
         .status(500)
@@ -72,6 +74,7 @@ router.get('/delete/:id', async (req, res) => {
           {
             model: Destination,
             attributes: ['id', 'city', 'country', 'iso', 'date_start', 'date_end'],
+            order: [["date_start", "ASC"], ["date_end", "ASC"]],
           },
           // {
           //   model: Document,
