@@ -72,6 +72,34 @@ const addDestination = async (event) => {
   }
 };
 
+
+let editBtnText = document.getElementById('edit-btn');
+let destBtnText = document.getElementById('dest-btn');
+
+document.querySelector('.collapsible-edit').addEventListener('click', function () {
+  this.classList.toggle('active');
+  var content = this.nextElementSibling;
+  if (content.style.display === 'block') {
+    content.style.display = 'none';
+    editBtnText.textContent = 'Edit Trip +';
+  } else {
+    content.style.display = 'block';
+    editBtnText.textContent = 'Edit Trip -';
+  }
+});
+
+document.querySelector('.collapsible-dest').addEventListener('click', function () {
+  this.classList.toggle('active');
+  var content = this.nextElementSibling;
+  if (content.style.display === 'block') {
+    content.style.display = 'none';
+    destBtnText.textContent = 'Add Destination +';
+  } else {
+    content.style.display = 'block';
+    destBtnText.textContent = 'Add Destination -';
+  }
+});
+
 const validateDestinationInputs = (city, country, date_start, date_end) => {
   let validationErrors = [];
   if (!city) {
@@ -111,6 +139,7 @@ const validateTripInputs = (city, country, date_start, date_end) => {
     }
       return validationErrors;
   };
+
 
 document.querySelector('.trip-form').addEventListener('submit', updateTrip);
 document

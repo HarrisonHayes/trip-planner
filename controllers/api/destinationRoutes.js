@@ -4,7 +4,8 @@ const isAuth = require('../../utils/auth');
 
 // add a destination
 router.post('/:id', async (req, res) => {
-try {
+
+  try {
     const destinationData = await Destination.create({
       city: req.body.city,
       country: req.body.countryName,
@@ -17,6 +18,7 @@ try {
 
     const destination = destinationData.get({ plain: true });
     if (destination) {
+
       const tripData = await Trip.findOne({
         where: { id: req.params.id, user_id: req.session.user_id },
         attributes: ['id', 'name', 'date_start', 'date_end'],
