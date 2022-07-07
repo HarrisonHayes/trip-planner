@@ -6,11 +6,7 @@ const updateTrip = async (event) => {
   const date_start = document.querySelector('#trip-start-date').value.trim();
   const date_end = document.querySelector('#trip-end-date').value.trim();
 
-  const validationResult = validateTripInputs(
-    name,
-    date_start,
-    date_end
-  );
+  const validationResult = validateTripInputs(name, date_start, date_end);
   if (validationResult.length == 0) {
     const jsonBody = JSON.stringify({ id, name, date_start, date_end });
     console.log(jsonBody);
@@ -84,33 +80,36 @@ const addDestination = async (event) => {
   }
 };
 
-
 let editBtnText = document.getElementById('edit-btn');
 let destBtnText = document.getElementById('dest-btn');
 
-document.querySelector('.collapsible-edit').addEventListener('click', function () {
-  this.classList.toggle('active');
-  var content = this.nextElementSibling;
-  if (content.style.display === 'block') {
-    content.style.display = 'none';
-    editBtnText.textContent = 'Edit Trip +';
-  } else {
-    content.style.display = 'block';
-    editBtnText.textContent = 'Edit Trip -';
-  }
-});
+document
+  .querySelector('.collapsible-edit')
+  .addEventListener('click', function () {
+    this.classList.toggle('active');
+    var content = this.nextElementSibling;
+    if (content.style.display === 'block') {
+      content.style.display = 'none';
+      editBtnText.textContent = 'Edit Trip +';
+    } else {
+      content.style.display = 'block';
+      editBtnText.textContent = 'Edit Trip -';
+    }
+  });
 
-document.querySelector('.collapsible-dest').addEventListener('click', function () {
-  this.classList.toggle('active');
-  var content = this.nextElementSibling;
-  if (content.style.display === 'block') {
-    content.style.display = 'none';
-    destBtnText.textContent = 'Add Destination +';
-  } else {
-    content.style.display = 'block';
-    destBtnText.textContent = 'Add Destination -';
-  }
-});
+document
+  .querySelector('.collapsible-dest')
+  .addEventListener('click', function () {
+    this.classList.toggle('active');
+    var content = this.nextElementSibling;
+    if (content.style.display === 'block') {
+      content.style.display = 'none';
+      destBtnText.textContent = 'Add Destination +';
+    } else {
+      content.style.display = 'block';
+      destBtnText.textContent = 'Add Destination -';
+    }
+  });
 
 const validateDestinationInputs = (city, country, date_start, date_end) => {
   let validationErrors = [];
@@ -148,7 +147,6 @@ const validateTripInputs = (name, date_start, date_end) => {
   }
   return validationErrors;
 };
-
 
 document.querySelector('.trip-form').addEventListener('submit', updateTrip);
 document
