@@ -293,4 +293,8 @@
     </form>
 </div>
 
+    {{#each trip.destinations as |destination|}}
+    {{> destination}}
+    {{/each}}
+
 <script src="../js/edittrip.js"></script>
