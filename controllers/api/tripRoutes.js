@@ -28,36 +28,36 @@ router.post('/', async (req, res) => {
 // update a trip by id
 router.put('/:id', async (req, res) => {
   if (req.session.loggedIn) {
-   // try {
-      let tripData = await Trip.update(
+    // try {
+    let tripData = await Trip.update(
+      {
+        name: req.body.name,
+        date_start: req.body.date_start,
+        date_end: req.body.date_end,
+      },
+      { where: { id: req.params.id } }
+    );
+    tripData = await Trip.findOne({
+      where: { id: req.params.id, user_id: req.session.user_id },
+      //here: { id: req.params.id },
+      attributes: ['id', 'name', 'date_start', 'date_end'],
+      include: [
         {
-          name: req.body.name,
-          date_start: req.body.date_start,
-          date_end: req.body.date_end,
+          model: User,
+          attributes: ['name'],
         },
-        { where: { id: req.params.id } }
-      );
-      tripData = await Trip.findOne({
-        where: { id: req.params.id, user_id: req.session.user_id },
-        //here: { id: req.params.id },
-        attributes: ['id', 'name', 'date_start', 'date_end'],
-        include: [
-          {
-            model: User,
-            attributes: ['name'],
-          },
-          {
-            model: Destination,
-            attributes: ['id', 'city', 'country', 'date_start', 'date_end'],
-          },
-          // {
-          //   model: Document,
-          //   attributes: ['id', 'name', 'content'],
-          // },
-        ],
-      });
-      const trip = tripData.get({ plain: true });
-      res.render('edit-trip', { trip, loggedIn: req.session.loggedIn });
+        {
+          model: Destination,
+          attributes: ['id', 'city', 'country', 'date_start', 'date_end'],
+        },
+        // {
+        //   model: Document,
+        //   attributes: ['id', 'name', 'content'],
+        // },
+      ],
+    });
+    const trip = tripData.get({ plain: true });
+    res.render('edit-trip', { trip, loggedIn: req.session.loggedIn });
     // } catch (err) {
     //   res.status(500).json(err);
     // }
