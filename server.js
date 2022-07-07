@@ -6,6 +6,7 @@ const routes = require('./controllers');
 //include handlebars for templating
 const exphbs = require('express-handlebars');
 const helpers = require("./utils/handlebarshelpers");
+const asyncHelpers = require('handlebars-async-helpers')
 //specify db connection for orm
 const sequelize = require('./config/connection');
 //init session state

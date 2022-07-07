@@ -1,12 +1,13 @@
-<h2 class="trip-page-title">
-    {{trip.name}}
-</h2>
+<div class="card col-11 m-2 p-2">
+    <h2 class="trip-page-title">
+        {{trip.name}}
+    </h2>
+</div>
 
 <button type="button" class="collapsible-edit">
     <h3 class="page-title" id="edit-btn">Edit Trip -</h3>
 </button>
-<div class="content content-edit card col-5 m-2 align-items-center p-2" style="display: block;">
-
+<div class="content-edit card col-5 m-2 align-items-center p-2" style="display: block;">
     <form class="form trip-form">
         <input type="hidden" id="trip-id" name="tripid" value="{{trip.id}}">
         <div class="form-group">
@@ -29,7 +30,7 @@
 <button type="button" class="collapsible-dest">
     <h3 class="page-title" id="dest-btn">Add Destination +</h3>
 </button>
-<div class="content content-edit card col-5 m-2 align-items-center p-2" style="display: none;">
+<div class="content-edit card col-5 m-2 align-items-center p-2" style="display: none;">
     <form class="form destination-form">
         <div class="form-group">
             <label for="destination-city">City</label>
