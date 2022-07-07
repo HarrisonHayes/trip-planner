@@ -3,8 +3,8 @@ const {
   User,
   Trip,
   Destination,
-  Document,
-  DocumentType,
+  // Document,
+  // DocumentType,
 } = require('../models');
 const isAuth = require('../utils/auth');
 
