@@ -80,7 +80,7 @@ router.get('/edittrip/:id', async (req, res) => {
         },
         {
           model: Destination,
-          attributes: ['id', 'city', 'country', 'date_start', 'date_end'],
+          attributes: ['id', 'city', 'iso', 'country', 'date_start', 'date_end'],
         },
         // {
         //   model: Document,
