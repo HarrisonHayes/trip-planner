@@ -1,3 +1,4 @@
+//this function capitalizes the first letter of each word
 const capWord = (string) => {
   if (string == '') {
     return '';
@@ -10,6 +11,7 @@ const capWord = (string) => {
   return stringArr.join(' ');
 };
 
+//validate inputs for city, country, dates present, and end date after start date
 const validateDestinationInputs = (city, country, date_start, date_end) => {
   let validationErrors = [];
   if (city == '') {
@@ -30,6 +32,7 @@ const validateDestinationInputs = (city, country, date_start, date_end) => {
   return validationErrors;
 };
 
+//validate inputs for trip name present, dates present, and end date after start date
 const validateTripInputs = (name, date_start, date_end) => {
   let validationErrors = [];
   if (name == '') {
@@ -47,6 +50,8 @@ const validateTripInputs = (name, date_start, date_end) => {
   return validationErrors;
 };
 
+//update existing trip
+//call PUT /api/trips/id:
 const updateTrip = async (event) => {
   event.preventDefault();
 
@@ -76,6 +81,8 @@ const updateTrip = async (event) => {
   }
 };
 
+//add destination to existing trip
+//call POST on /api/destinations/id: route
 const addDestination = async (event) => {
   event.preventDefault();
 
@@ -134,6 +141,7 @@ const addDestination = async (event) => {
 let editBtnText = document.getElementById('edit-btn');
 let destBtnText = document.getElementById('dest-btn');
 
+//event handler for collapsible section
 document
   .querySelector('.collapsible-edit')
   .addEventListener('click', function () {
@@ -148,6 +156,7 @@ document
     }
   });
 
+//event handler for collapsible section
 document
   .querySelector('.collapsible-dest')
   .addEventListener('click', function () {
@@ -162,7 +171,9 @@ document
     }
   });
 
+//event handler for updating trip
 document.querySelector('.trip-form').addEventListener('submit', updateTrip);
+//event handler for adding a destination
 document
   .querySelector('.destination-form')
   .addEventListener('submit', addDestination);

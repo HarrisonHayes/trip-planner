@@ -1,3 +1,5 @@
+//logic to handle user login
+//calling POST to /api/users/login
 const login = async (event) => {
   event.preventDefault();
 
@@ -19,6 +21,8 @@ const login = async (event) => {
   }
 };
 
+//logic to handle creating a new user
+//calling POST to /api/users
 const signup = async (event) => {
   event.preventDefault();
 
@@ -43,5 +47,7 @@ const signup = async (event) => {
   }
 };
 
+//adding event handler for the login button
 document.querySelector('.login-form').addEventListener('submit', login);
+//adding event handler for the submit button
 document.querySelector('.signup-form').addEventListener('submit', signup);
