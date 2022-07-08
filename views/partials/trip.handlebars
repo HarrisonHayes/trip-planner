@@ -1,8 +1,9 @@
 
-<div class="card col-11 m-4 p-1">
+<div class="card destcard col-11 m-4 p-1">
     <div>
         <a href="/edittrip/{{id}}"><h2>{{name}}</h2></a>
     </div>
     <div class="card-body">{{format_date date_start}} to {{format_date date_end}}</div>
-    <a href="/deletetrip/{{id}}">Delete</a>
+    
+    <a href="/deletetrip/{{id}}"><img src="/images/delete.png" alt="delete {{name }} trip"></a>
 </div>

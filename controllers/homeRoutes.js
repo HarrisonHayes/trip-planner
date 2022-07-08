@@ -23,7 +23,7 @@ router.get('/login', (req, res) => {
 // home page - get all trips for a user
 router.get('/', async (req, res) => {
   if (req.session.user_id) {
-    try {
+    //try {
       const tripData = await Trip.findAll({
         where: { user_id: req.session.user_id },
         attributes: ['id', 'name', 'date_start', 'date_end'],
@@ -31,12 +31,32 @@ router.get('/', async (req, res) => {
           ['date_start', 'ASC'],
           ['date_end', 'ASC'],
         ],
+        include: [
+          {
+            model: User,
+            attributes: ['name'],
+          },
+          {
+            model: Destination,
+            attributes: ['id', 'city', 'iso', 'country', 'date_start', 'date_end'],
+            order: [["date_start", "ASC"], ["date_end", "ASC"]],
+          },
+        ],
       });
       const trips = tripData.map((trip) => trip.get({ plain: true }));
+      let flagHTML=""
+      for(let tripOrd=0;tripOrd<tripData.length;tripOrd++){
+        const thisTrip=tripData[tripOrd]
+        for(let destOrd=0;destOrd<thisTrip.destinations.length;destOrd++){
+          const thisDest=thisTrip.destinations[destOrd];
+          console.log(thisTrip.name,thisDest.country)
+        }
+      }
+      
       res.render('homepage', { trips, loggedIn: req.session.loggedIn });
-    } catch (err) {
-      res.status(500).json(err);
-    }
+    // } catch (err) {
+    //   res.status(500).json(err);
+    // }
   } else {
     res.render('homepage', { loggedIn: req.session.loggedIn });
   }
@@ -102,6 +122,7 @@ router.get('/edittrip/:id', async (req, res) => {
         // },
       ],
     });
+
     const trip = tripData.get({ plain: true });
     res.render('edit-trip', { trip, loggedIn: req.session.loggedIn });
   } else {
