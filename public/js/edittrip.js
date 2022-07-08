@@ -1,10 +1,48 @@
 const capWord = (string) => {
+  if (string==""){return ""}
   let stringArr = string.split(' ');
   console.log(stringArr);
   for (let i = 0; i < stringArr.length; i++) {
     stringArr[i]=stringArr[i][0].toUpperCase() + stringArr[i].substr(1);
   }
   return stringArr.join(' ');
+};
+
+const validateDestinationInputs = (city, country, date_start, date_end) => {
+  let validationErrors = [];
+  if (city == '') {
+    validationErrors.push('Enter a valid city');
+  }
+  if (country == '0') {
+    validationErrors.push('Enter a valid country');
+  }
+  if (date_start == '') {
+    validationErrors.push('Enter a valid start date');
+  }
+  if (date_start == '') {
+    validationErrors.push('Enter a valid end date');
+  }
+  if (date_start != '' && date_end != '' && date_end < date_start) {
+    validationErrors.push('Enter a trip end date after the start date');
+  }
+  return validationErrors;
+};
+
+const validateTripInputs = (name, date_start, date_end) => {
+  let validationErrors = [];
+  if (name == '') {
+    validationErrors.push('Enter a trip name');
+  }
+  if (date_start == '') {
+    validationErrors.push('Enter a valid start date');
+  }
+  if (date_start == '') {
+    validationErrors.push('Enter a valid end date');
+  }
+  if (date_start != '' && date_end != '' && date_end < date_start) {
+    validationErrors.push('Enter a trip end date after the start date');
+  }
+  return validationErrors;
 };
 
 const updateTrip = async (event) => {
@@ -120,42 +158,7 @@ document
     }
   });
 
-const validateDestinationInputs = (city, country, date_start, date_end) => {
-  let validationErrors = [];
-  if (city == '') {
-    validationErrors.push('Enter a valid city');
-  }
-  if (country == '0') {
-    validationErrors.push('Enter a valid country');
-  }
-  if (date_start == '') {
-    validationErrors.push('Enter a valid start date');
-  }
-  if (date_start == '') {
-    validationErrors.push('Enter a valid end date');
-  }
-  if (date_start != '' && date_end != '' && date_end < date_start) {
-    validationErrors.push('Enter a trip end date after the start date');
-  }
-  return validationErrors;
-};
 
-const validateTripInputs = (name, date_start, date_end) => {
-  let validationErrors = [];
-  if (name == '') {
-    validationErrors.push('Enter a trip name');
-  }
-  if (date_start == '') {
-    validationErrors.push('Enter a valid start date');
-  }
-  if (date_start == '') {
-    validationErrors.push('Enter a valid end date');
-  }
-  if (date_start != '' && date_end != '' && date_end < date_start) {
-    validationErrors.push('Enter a trip end date after the start date');
-  }
-  return validationErrors;
-};
 
 document.querySelector('.trip-form').addEventListener('submit', updateTrip);
 document
