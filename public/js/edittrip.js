@@ -1,8 +1,17 @@
+const capWord = (string) => {
+  let stringArr = string.split(' ');
+  console.log(stringArr);
+  for (let i = 0; i < stringArr.length; i++) {
+    stringArr[i]=stringArr[i][0].toUpperCase() + stringArr[i].substr(1);
+  }
+  return stringArr.join(' ');
+};
+
 const updateTrip = async (event) => {
   event.preventDefault();
 
   const id = document.querySelector('#trip-id').value.trim();
-  const name = document.querySelector('#trip-name').value.trim();
+  const name = capWord(document.querySelector('#trip-name').value.trim());
   const date_start = document.querySelector('#trip-start-date').value.trim();
   const date_end = document.querySelector('#trip-end-date').value.trim();
 
@@ -31,7 +40,7 @@ const addDestination = async (event) => {
   event.preventDefault();
 
   const id = document.querySelector('#trip-id').value.trim();
-  const city = document.querySelector('#destination-city').value.trim();
+  const city = capWord(document.querySelector('#destination-city').value.trim());
   let countryRaw = document.querySelector('#destination-country').value.trim();
   const date_start = document
     .querySelector('#destination-start-date')
