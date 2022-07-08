@@ -10,6 +10,7 @@ const capWord = (string) => {
 };
 
 
+//validate inputs for trip name present, dates present, and end date after start date
 const validateTripInputs = (name, date_start, date_end) => {
   let validationError = [];
   if (name === '') {
@@ -29,6 +30,7 @@ const validateTripInputs = (name, date_start, date_end) => {
 };
 
 //this function is called by the create trip button on the homepage
+//call the POST /api/trips route with JSON containing the trip name, start date, and end date
 const createTrip = async (event) => {
   event.preventDefault();
 
@@ -74,4 +76,5 @@ document
     }
   });
 
+//add event listener for the create trip 
 document.querySelector('.trip-form').addEventListener('submit', createTrip);
