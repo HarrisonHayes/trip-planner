@@ -2,7 +2,7 @@
 
 
 ## Description
-The Travel Planner was created to give the user another way to save their future trips. The user will be allowed to update and create new trips when needed.
+Many people dream about seeing the world despite leading very busy lives. When trying to plan trips, it can be difficult to remember the dates and destinations of each trip you’ve planned. With our site, you can add trips to your dashboard that will remind you of the days you plan to leave and when you plan to return. Within your trips, you can also add destinations so you never lose track of when you plan to arrive and depart from each trip’s destination. You can also use our site to plan potential trips, as they can always  be deleted and altered.
 
 
 ## Table of Contents
