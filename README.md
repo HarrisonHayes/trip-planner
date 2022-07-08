@@ -20,8 +20,10 @@ The Travel Planner was created to give the user another way to save their future
 -[Sela Privette](https://github.com/selaprivette)
 
 ## Visuals 
--[Live Heroku Site]()
+-[Live Heroku Site](https://peaceful-waters-01684.herokuapp.com/)
 -[Github Repo](https://github.com/HarrisonHayes/trip-planner)
+-[Home Page](homepage.png)
+-[Edit Trip](edittrip.png)
 
 ## Technologies
 <img src="https://img.shields.io/badge/html5%20-%23E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white"/>

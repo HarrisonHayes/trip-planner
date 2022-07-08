@@ -1,9 +1,11 @@
 const capWord = (string) => {
-  if (string==""){return ""}
+  if (string == '') {
+    return '';
+  }
   let stringArr = string.split(' ');
   console.log(stringArr);
   for (let i = 0; i < stringArr.length; i++) {
-    stringArr[i]=stringArr[i][0].toUpperCase() + stringArr[i].substr(1);
+    stringArr[i] = stringArr[i][0].toUpperCase() + stringArr[i].substr(1);
   }
   return stringArr.join(' ');
 };
@@ -78,7 +80,9 @@ const addDestination = async (event) => {
   event.preventDefault();
 
   const id = document.querySelector('#trip-id').value.trim();
-  const city = capWord(document.querySelector('#destination-city').value.trim());
+  const city = capWord(
+    document.querySelector('#destination-city').value.trim()
+  );
   let countryRaw = document.querySelector('#destination-country').value.trim();
   const date_start = document
     .querySelector('#destination-start-date')
@@ -157,8 +161,6 @@ document
       destBtnText.textContent = 'Add Destination -';
     }
   });
-
-
 
 document.querySelector('.trip-form').addEventListener('submit', updateTrip);
 document
