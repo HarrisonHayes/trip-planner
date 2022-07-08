@@ -1,4 +1,6 @@
+//this function capitalizes the first letter of each word
 const capWord = (string) => {
+  if (string==""){return ""}
   let stringArr = string.split(' ');
   console.log(stringArr);
   for (let i = 0; i < stringArr.length; i++) {
@@ -7,6 +9,26 @@ const capWord = (string) => {
   return stringArr.join(' ');
 };
 
+
+const validateTripInputs = (name, date_start, date_end) => {
+  let validationError = [];
+  if (name === '') {
+    validationError.push('Enter a trip name');
+  }
+  if (date_start === '') {
+    validationError.push('Enter a vaild start date');
+  }
+  if (date_end === '') {
+    validationError.push('Enter a vaild end date');
+  }
+  if (date_start !== '' && date_end !== '' && date_end < date_start) {
+    validationError.push('Enter a trip end date after the start date');
+  }
+
+  return validationError;
+};
+
+//this function is called by the create trip button on the homepage
 const createTrip = async (event) => {
   event.preventDefault();
 
@@ -15,25 +37,7 @@ const createTrip = async (event) => {
   const date_start = document.querySelector('#start-date').value.trim();
   const date_end = document.querySelector('#end-date').value.trim();
 
-  const validateTripInputs = (name, date_start, date_end) => {
-    let validationError = [];
-    if (name === '') {
-      validationError.push('Enter a trip name');
-    }
-    if (date_start === '') {
-      validationError.push('Enter a vaild start date');
-    }
-    if (date_end === '') {
-      validationError.push('Enter a vaild end date');
-    }
-    if (date_start !== '' && date_end !== '' && date_end < date_start) {
-      validationError.push('Enter a trip end date after the start date');
-    }
-
-    return validationError;
-  };
-
-  const validationResult = validateTripInputs(name, date_start, date_end);
+   const validationResult = validateTripInputs(name, date_start, date_end);
   if (validationResult.length === 0) {
     const jsonBody = JSON.stringify({ name, date_start, date_end });
     console.log(jsonBody);
