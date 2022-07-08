@@ -1,14 +1,15 @@
 //this function capitalizes the first letter of each word
 const capWord = (string) => {
-  if (string==""){return ""}
+  if (string == '') {
+    return '';
+  }
   let stringArr = string.split(' ');
   console.log(stringArr);
   for (let i = 0; i < stringArr.length; i++) {
-    stringArr[i]=stringArr[i][0].toUpperCase() + stringArr[i].substr(1);
+    stringArr[i] = stringArr[i][0].toUpperCase() + stringArr[i].substr(1);
   }
   return stringArr.join(' ');
 };
-
 
 //validate inputs for trip name present, dates present, and end date after start date
 const validateTripInputs = (name, date_start, date_end) => {
@@ -39,7 +40,7 @@ const createTrip = async (event) => {
   const date_start = document.querySelector('#start-date').value.trim();
   const date_end = document.querySelector('#end-date').value.trim();
 
-   const validationResult = validateTripInputs(name, date_start, date_end);
+  const validationResult = validateTripInputs(name, date_start, date_end);
   if (validationResult.length === 0) {
     const jsonBody = JSON.stringify({ name, date_start, date_end });
     console.log(jsonBody);
