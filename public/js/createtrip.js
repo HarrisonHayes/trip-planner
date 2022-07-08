@@ -2,7 +2,7 @@ const capWord = (string) => {
   let stringArr = string.split(' ');
   console.log(stringArr);
   for (let i = 0; i < stringArr.length; i++) {
-    stringArr[i][0].toUpperCase() + stringArr[i].substr(1);
+    stringArr[i]=stringArr[i][0].toUpperCase() + stringArr[i].substr(1);
   }
   return stringArr.join(' ');
 };
