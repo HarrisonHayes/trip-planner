@@ -1,3 +1,4 @@
+const { relativeTimeRounding } = require('moment');
 const moment = require('moment');
 const fetch = require('node-fetch');
 const openWeathermapKey = '26430011a9e304ff62d863402ab09fcc';
@@ -87,6 +88,23 @@ const getWeather = (city, country, dateIn) => {
   }
 };
 
+const getTypeIcon = (type)=> {
+  let ret="";
+  if(type=="Flight Reservation"){ret="<img src='/images/flight.png'>"}
+  if(type=="Hotel Reservation"){ret="<img src='/images/hotel.png'>"}
+  if(type=="Rental Car Reservation"){ret="<img src='/images/rentalcar.png'>"}
+  if(type=="Event Tickets"){ret="<img src='/images/ticket.png'>"}
+  if(type=="Other"){ret="<img src='/images/document.png'>"}
+  return ret;
+}
+
+const formatLineBreaks = (text) => {
+  if (text) {
+    return text.replace(/(\r\n|\n\r|\r|\n)/g, '<br>');
+  }
+  return '';
+};
+
 module.exports = {
   format_time,
   format_date,
@@ -95,5 +113,7 @@ module.exports = {
   lc,
   trunc,
   getWeather,
+  getTypeIcon,
   getWeatherAPI,
+  formatLineBreaks,
 };

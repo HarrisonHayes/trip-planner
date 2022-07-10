@@ -10,9 +10,9 @@
         <br>
 
         {{#each documents as |document|}}
-        <h4>{{document.name}} ({{document.type}}) <a href="/api/documents/delete/{{document.id}}.{{../id}}"><img
+        <h4>{{{getTypeIcon document.type}}} {{document.name}} ({{document.type}}) <a href="/api/documents/delete/{{document.id}}.{{../id}}"><img
                     src="/images/delete.png" alt="delete document from destination"></a></h4>
-        <p>{{document.content}}</p>
+        <p>{{{formatLineBreaks document.content}}}</p>
 
         <br>
         {{/each}}
