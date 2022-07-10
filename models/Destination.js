@@ -17,11 +17,11 @@ Destination.init(
     },
     country: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     iso: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     date_start: {
       type: DataTypes.DATE,
