@@ -3,7 +3,7 @@ const {
   User,
   Trip,
   Destination,
-  // Document,
+  Document,
   // DocumentType,
 } = require('../models');
 const isAuth = require('../utils/auth');
@@ -24,36 +24,46 @@ router.get('/login', (req, res) => {
 router.get('/', async (req, res) => {
   if (req.session.user_id) {
     //try {
-      const tripData = await Trip.findAll({
-        where: { user_id: req.session.user_id },
-        attributes: ['id', 'name', 'date_start', 'date_end'],
-        order: [
-          ['date_start', 'ASC'],
-          ['date_end', 'ASC'],
-        ],
-        include: [
-          {
-            model: User,
-            attributes: ['name'],
-          },
-          {
-            model: Destination,
-            attributes: ['id', 'city', 'iso', 'country', 'date_start', 'date_end'],
-            order: [["date_start", "ASC"], ["date_end", "ASC"]],
-          },
-        ],
-      });
-      const trips = tripData.map((trip) => trip.get({ plain: true }));
-      let flagHTML=""
-      for(let tripOrd=0;tripOrd<tripData.length;tripOrd++){
-        const thisTrip=tripData[tripOrd]
-        for(let destOrd=0;destOrd<thisTrip.destinations.length;destOrd++){
-          const thisDest=thisTrip.destinations[destOrd];
-          console.log(thisTrip.name,thisDest.country)
-        }
+    const tripData = await Trip.findAll({
+      where: { user_id: req.session.user_id },
+      attributes: ['id', 'name', 'date_start', 'date_end', 'user_id'],
+      order: [
+        ['date_start', 'ASC'],
+        ['date_end', 'ASC'],
+      ],
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+        {
+          model: Destination,
+          attributes: [
+            'id',
+            'city',
+            'iso',
+            'country',
+            'date_start',
+            'date_end',
+          ],
+          order: [
+            ['date_start', 'ASC'],
+            ['date_end', 'ASC'],
+          ],
+        },
+      ],
+    });
+    const trips = tripData.map((trip) => trip.get({ plain: true }));
+    let flagHTML = '';
+    for (let tripOrd = 0; tripOrd < tripData.length; tripOrd++) {
+      const thisTrip = tripData[tripOrd];
+      for (let destOrd = 0; destOrd < thisTrip.destinations.length; destOrd++) {
+        const thisDest = thisTrip.destinations[destOrd];
+        console.log(thisTrip.name, thisDest.country);
       }
-      
-      res.render('homepage', { trips, loggedIn: req.session.loggedIn });
+    }
+
+    res.render('homepage', { trips, loggedIn: req.session.loggedIn });
     // } catch (err) {
     //   res.status(500).json(err);
     // }
@@ -95,7 +105,7 @@ router.get('/edittrip/:id', async (req, res) => {
   if (req.session.loggedIn) {
     const tripData = await Trip.findOne({
       where: { id: req.params.id, user_id: req.session.user_id },
-      attributes: ['id', 'name', 'date_start', 'date_end'],
+      attributes: ['id', 'name', 'date_start', 'date_end', 'user_id'],
       order: [
         [Destination, 'date_start', 'ASC'],
         [Destination, 'date_end', 'ASC'],
@@ -115,16 +125,32 @@ router.get('/edittrip/:id', async (req, res) => {
             'date_start',
             'date_end',
           ],
+          include: [ 
+            {
+              model: Document,
+              attributes: ['id', 'name', 'content', 'type'],
+            }
+          ],
         },
-        // {
-        //   model: Document,
-        //   attributes: ['id', 'name', 'content'],
-        // },
       ],
     });
+    const trip = JSON.parse(JSON.stringify(tripData));
+    res.render('edit-trip', { trip, loggedIn: req.session.loggedIn, user_id: req.session.user_id });
+  } else {
+    res.render('login');
+  }
+});
 
-    const trip = tripData.get({ plain: true });
-    res.render('edit-trip', { trip, loggedIn: req.session.loggedIn });
+// add document to a destination id
+router.get('/adddocument/:id', async (req, res) => {
+  if (req.session.loggedIn) {
+    const destinationData = await Destination.findOne({
+      where: { id: req.params.id }
+    });
+    if(destinationData){
+      const destination = JSON.parse(JSON.stringify(destinationData));
+      res.render('add-document', { destination, loggedIn: req.session.loggedIn, user_id: req.session.user_id }); 
+    }
   } else {
     res.render('login');
   }

@@ -19,12 +19,16 @@ Document.init(
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    type_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'documentType',
-        key: 'id',
-      },
+    // type_id: {
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //     model: 'documentType',
+    //     key: 'id',
+    //   },
+    // },
+    type: {
+      type: DataTypes.STRING,
+      allowNull: false 
     },
     destination_id: {
       type: DataTypes.INTEGER,

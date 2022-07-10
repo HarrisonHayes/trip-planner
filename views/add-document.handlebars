@@ -1,0 +1,30 @@
+<div class="card col-5 m-2 align-items-center p-2">
+    <h2 class="page-title">Add Document To Destination {{destination.name}}</h2>
+    <form class="form document-form">
+        <div class="form-group">
+            <label for="document-name">Title</label>
+            <input class="form-input" type="text" id="document-name" />
+        </div>
+        <div class="form-group">
+            <label for="document-type">Type</label>
+            <select class="form-input" name="document-type" id="document-type">
+                <option value="">-- Select Type --</option>
+                <option >Flight Reservation</option>
+                <option >Train Reservation</option>
+                <option >Hotel Reservation</option>
+                <option >Rental Car Reservation</option>
+                <option >Event Tickets</option>
+                <option >Other</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="doc-contents">Contents</label>
+            <textarea class="form-input" cols="60" rows="10" id="document-contents"></textarea>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit">Add Document</button>
+        </div>
+    </form>
+</div>
+
+<script src="/js/adddocument.js"></script>

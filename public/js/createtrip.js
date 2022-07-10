@@ -18,10 +18,10 @@ const validateTripInputs = (name, date_start, date_end) => {
     validationError.push('Enter a trip name');
   }
   if (date_start === '') {
-    validationError.push('Enter a vaild start date');
+    validationError.push('Enter a valid start date');
   }
   if (date_end === '') {
-    validationError.push('Enter a vaild end date');
+    validationError.push('Enter a valid end date');
   }
   if (date_start !== '' && date_end !== '' && date_end < date_start) {
     validationError.push('Enter a trip end date after the start date');

@@ -47,7 +47,7 @@ router.get('/trip/:id', async (req, res) => {
     });
     if (tripData) {
       const trip = tripData.get({ plain: true });
-      res.render('edit-trip', { trip, loggedIn: req.session.loggedIn });
+      res.render('edit-trip', { trip, loggedIn: req.session.loggedIn, user_id: req.session.user_id });
     } else {
       res.status(404).json({ message: 'No trip found with this id' });
     }

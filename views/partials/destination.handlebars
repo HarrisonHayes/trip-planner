@@ -7,7 +7,19 @@
         <hr width="80%">
         <div class="card-body">{{format_date date_start}} to {{format_date date_end}}</div>
         {{{getWeather city country date_start}}}
+        <br>
+
+        {{#each documents as |document|}}
+        <h4>{{document.name}} ({{document.type}}) <a href="/api/documents/delete/{{document.id}}.{{../id}}"><img
+                    src="/images/delete.png" alt="delete document from destination"></a></h4>
+        <p>{{document.content}}</p>
+
+        <br>
+        {{/each}}
+
         <hr width="80%">
+        <a href="/adddocument/{{id}}" target="_blank"><img src="/images/adddocument.png"
+                alt="add document to the destination"></a>
         <a href="/api/destinations/delete/{{id}}"><img src="/images/delete.png"
                 alt="delete {{destination}} from trip"></a>
     </div>

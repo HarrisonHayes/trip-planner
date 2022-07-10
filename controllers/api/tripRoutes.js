@@ -57,7 +57,7 @@ router.put('/:id', async (req, res) => {
       ],
     });
     const trip = tripData.get({ plain: true });
-    res.render('edit-trip', { trip, loggedIn: req.session.loggedIn });
+    res.render('edit-trip', { trip, loggedIn: req.session.loggedIn, user_id: req.session.user_id });
     // } catch (err) {
     //   res.status(500).json(err);
     // }

@@ -1,7 +1,7 @@
 const User = require('./User');
 const Trip = require('./Trip');
 const Destination = require('./Destination');
-//const Document = require('./Document');
+const Document = require('./Document');
 //const DocumentType = require('./DocumentType');
 
 User.hasMany(Trip, {
@@ -22,22 +22,18 @@ Destination.belongsTo(Trip, {
   foreignKey: 'trip_id',
 });
 
-// Destination.hasMany(Document, {
-//   foreignKey: 'destination_id',
-//   onDelete: 'CASCADE',
-// });
+Destination.hasMany(Document, {
+  foreignKey: 'destination_id',
+  onDelete: 'CASCADE',
+});
 
-// Document.belongsTo(Destination, {
-//   foreignKey: 'destination_id',
-// });
+Document.belongsTo(Destination, {
+  foreignKey: 'destination_id',
+});
 
 // Document.hasOne(DocumentType, {
-//   foreignKey: 'type_id',
+//   foreignKey: 'id',
 // });
 
-// DocumentType.belongsTo(Document, {
-//   foreignKey: 'type_id',
-// });
-
-//module.exports = { User, Trip, Destination, Document, DocumentType };
-module.exports = { User, Trip, Destination };
+module.exports = { User, Trip, Destination, Document };
+//module.exports = { User, Trip, Destination };

@@ -19,7 +19,11 @@ router.post('/:id', async (req, res) => {
     if (destination) {
       const tripData = await Trip.findOne({
         where: { id: req.params.id, user_id: req.session.user_id },
-        attributes: ['id', 'name', 'date_start', 'date_end'],
+        attributes: ['id', 'name', 'date_start', 'date_end', 'user_id'],
+        order: [
+          [Destination, 'date_start', 'ASC'],
+          [Destination, 'date_end', 'ASC'],
+        ],
         include: [
           {
             model: User,
@@ -35,21 +39,19 @@ router.post('/:id', async (req, res) => {
               'date_start',
               'date_end',
             ],
-            order: [
-              ['date_start', 'ASC'],
-              ['date_end', 'ASC'],
+            include: [ 
+              {
+                model: Document,
+                attributes: ['id', 'name', 'content', 'type'],
+              }
             ],
           },
-          // {
-          //   model: Document,
-          //   attributes: ['id', 'name', 'content'],
-          // },
         ],
       });
       const trip = tripData.get({ plain: true });
 
       console.log(trip);
-      res.render('edit-trip', { trip, loggedIn: req.session.loggedIn });
+      res.render('edit-trip', { trip, loggedIn: req.session.loggedIn, user_id: req.session.user_id });
     } else {
       res
         .status(500)
@@ -102,7 +104,7 @@ router.get('/delete/:id', async (req, res) => {
         ],
       });
       const trip = tripData.get({ plain: true });
-      res.render('edit-trip', { trip, loggedIn: req.session.loggedIn });
+      res.render('edit-trip', { trip, loggedIn: req.session.loggedIn, user_id: req.session.user_id });
       // } catch (err) {
       //   res.status(500).json(err);
       // }
