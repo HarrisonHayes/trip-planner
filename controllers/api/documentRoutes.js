@@ -22,7 +22,6 @@ router.get('/delete/:id', async (req, res) => {
   if (params.length == 2) {
     const document_id = params[0];
     const destination_id = params[1];
-    console.log(params);
     if (req.session.loggedIn) {
       const document = await Document.findOne({
         where: { id: document_id, destination_id: destination_id },
@@ -69,7 +68,6 @@ router.get('/delete/:id', async (req, res) => {
         ],
       });
       const trip = tripData.get({ plain: true });
-      console.log('rendering edit trip');
       res.render('edit-trip', {
         trip,
         loggedIn: req.session.loggedIn,

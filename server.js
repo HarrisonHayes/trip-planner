@@ -11,6 +11,7 @@ const sequelize = require('./config/connection');
 //init session state
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const path = require('path');
+require('dotenv').config();
 
 const app = express();
 //setup port for local or heroku operation
@@ -18,8 +19,10 @@ const PORT = process.env.PORT || 3001;
 
 //setup session object
 const sess = {
-  secret: 'trip-planner-secret',
-  cookie: {},
+  secret: process.env.SECRET,
+  cookie: {
+    maxAge: 86400
+  },
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({

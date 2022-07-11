@@ -59,7 +59,6 @@ const getWeatherAPI = async (city, country, dateStart) => {
       'https://api.openweathermap.org/data/2.5/onecall?' + params
     );
     const weatherData = await response.json();
-    console.log(weatherData, 'weather call');
     return 'weather call';
   }
 };
