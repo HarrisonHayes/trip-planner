@@ -1,10 +1,11 @@
 const router = require('express').Router();
-const { Trip, User, Destination } = require('../../models');
+const { Trip, User, Destination, Document } = require('../../models');
 const isAuth = require('../../utils/auth');
 
 // add a destination
 router.post('/:id', async (req, res) => {
   try {
+    console.log("a")
     const destinationData = await Destination.create({
       city: req.body.city,
       country: req.body.countryName,
@@ -17,6 +18,7 @@ router.post('/:id', async (req, res) => {
 
     const destination = destinationData.get({ plain: true });
     if (destination) {
+      console.log("a")
       const tripData = await Trip.findOne({
         where: { id: req.params.id, user_id: req.session.user_id },
         attributes: ['id', 'name', 'date_start', 'date_end', 'user_id'],
@@ -49,8 +51,7 @@ router.post('/:id', async (req, res) => {
         ],
       });
       const trip = tripData.get({ plain: true });
-
-      console.log(trip);
+      console.log("a")
       res.render('edit-trip', { trip, loggedIn: req.session.loggedIn, user_id: req.session.user_id });
     } else {
       res
@@ -62,56 +63,24 @@ router.post('/:id', async (req, res) => {
   }
 });
 
-router.get('/delete/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
+  const destination_id=req.params.id;
   if (req.session.loggedIn) {
     const destination = await Destination.findOne({
-      where: { id: req.params.id },
+      where: { id: destination_id },
     });
     if (destination) {
       const tripId = destination.trip_id;
-      console.log(tripId);
       //try {
       const destDelete = await Destination.destroy({
         where: { id: req.params.id },
       });
-      const tripData = await Trip.findOne({
-        where: { id: tripId, user_id: req.session.user_id },
-        attributes: ['id', 'name', 'date_start', 'date_end'],
-        include: [
-          {
-            model: User,
-            attributes: ['name'],
-          },
-          {
-            model: Destination,
-            attributes: [
-              'id',
-              'city',
-              'country',
-              'iso',
-              'date_start',
-              'date_end',
-            ],
-            order: [
-              ['date_start', 'ASC'],
-              ['date_end', 'ASC'],
-            ],
-          },
-          // {
-          //   model: Document,
-          //   attributes: ['id', 'name', 'content'],
-          // },
-        ],
-      });
-      const trip = tripData.get({ plain: true });
-      res.render('edit-trip', { trip, loggedIn: req.session.loggedIn, user_id: req.session.user_id });
-      // } catch (err) {
-      //   res.status(500).json(err);
-      // }
+      res.status(200).json("successfully deleted "+destination_id);
     }
   } else {
-    res.render('login');
+    res.status(401)
   }
 });
+
 
 module.exports = router;

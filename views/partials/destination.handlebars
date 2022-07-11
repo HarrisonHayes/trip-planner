@@ -20,8 +20,8 @@
         <h2 class="m-2 p-2">
         <a href="/adddocument/{{id}}" target="_blank"><img src="/images/adddocument.png"
                 alt="add document to the destination"></a>
-        <a href="/api/destinations/delete/{{id}}"><img src="/images/delete.png"
-                alt="delete {{destination}} from trip"></a>
+        <img src="/images/delete.png"
+                alt="delete {{destination}} from trip" onclick="deleteDestination({{id}})">
         </h2>
     </div>
 </div>

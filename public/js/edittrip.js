@@ -79,6 +79,14 @@ const updateTrip = async (event) => {
   }
 };
 
+const deleteDestination = async (destination_id) => {
+  const response = await fetch('/api/destinations/' + destination_id, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+  });
+  window.location.reload();
+}
+
 //add destination to existing trip
 //call POST on /api/destinations/id: route
 const addDestination = async (event) => {
