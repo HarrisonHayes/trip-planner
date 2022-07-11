@@ -1,7 +1,7 @@
 const { relativeTimeRounding } = require('moment');
 const moment = require('moment');
 const fetch = require('node-fetch');
-const openWeathermapKey = '26430011a9e304ff62d863402ab09fcc';
+const openWeathermapKey = '8b62e1bd62c44925cbf6e9bb8f211dba';
 
 const format_time = (date) => {
   return date.toLocaleTimeString();
