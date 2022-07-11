@@ -10,12 +10,9 @@ const isAuth = require('../utils/auth');
 
 //login handler
 router.get('/login', (req, res) => {
-  console.log('login handler');
   if (req.session.loggedIn) {
-    console.log('logged in');
     res.render('homepage', { loggedIn: req.session.loggedIn });
   } else {
-    console.log('not logged in');
     res.render('login');
   }
 });
@@ -59,7 +56,6 @@ router.get('/', async (req, res) => {
       const thisTrip = tripData[tripOrd];
       for (let destOrd = 0; destOrd < thisTrip.destinations.length; destOrd++) {
         const thisDest = thisTrip.destinations[destOrd];
-        console.log(thisTrip.name, thisDest.country);
       }
     }
 
