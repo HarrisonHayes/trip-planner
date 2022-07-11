@@ -31,8 +31,10 @@ const signup = async (event) => {
   const password = document.querySelector('#password-signup').value.trim();
 
   const jsonBody = JSON.stringify({ name, email, password });
-  console.log(jsonBody);
-  if (name && password && email) {
+  
+  const validationResult =validateAccountInputs(name, email, password);
+
+  if (validationResult.length!==0) {
     const response = await fetch('/api/users', {
       method: 'POST',
       body: jsonBody,
@@ -44,7 +46,24 @@ const signup = async (event) => {
     } else {
       alert('Error creating user');
     }
+  } else {
+    alert(validationResult.join('\n'));
   }
+};
+
+//validate inputs for username, email address, and password
+const validateAccountInputs = (name, email, password) => {
+  let validationError = [];
+  if (name === '') {
+    validationError.push('Enter a username name');
+  }
+  if (email === '') {
+    validationError.push('Enter an email address');
+  }
+    if (password.length<8) {
+    validationError.push('Enter a password that is at least 8 characters');
+  }
+  return validationError;
 };
 
 //adding event handler for the login button

@@ -1,11 +1,11 @@
 <div class="card col-11 my-2 destcard">
     <div class="card-title d-flex justify-content-between px-2 ">
-        <h2> <img src="https://flagcdn.com/32x24/{{lc iso}}.png" srcset="https://flagcdn.com/64x48/{{lc iso}}.png 2x,
+        <h2 class="m-2 p-2"> <img src="https://flagcdn.com/32x24/{{lc iso}}.png" srcset="https://flagcdn.com/64x48/{{lc iso}}.png 2x,
     https://flagcdn.com/96x72/{{lc iso}}.png 3x" width="32" height="24" alt="{{country}}">&nbsp;{{city}},
             {{country}}&nbsp; <img src="https://flagcdn.com/32x24/{{lc iso}}.png" srcset="https://flagcdn.com/64x48/{{lc iso}}.png 2x,
     https://flagcdn.com/96x72/{{lc iso}}.png 3x" width="32" height="24" alt="{{country}}"></h2>
-        <hr width="80%">
-        <div class="card-body">{{format_date date_start}} to {{format_date date_end}}</div>
+        
+        <div class="card-body"><h3>{{format_date date_start}} to {{format_date date_end}}</h3></div>
         {{{getWeather city country date_start}}}
         <br>
 
@@ -17,10 +17,11 @@
         <br>
         {{/each}}
 
-        <hr width="80%">
+        <h2 class="m-2 p-2">
         <a href="/adddocument/{{id}}" target="_blank"><img src="/images/adddocument.png"
                 alt="add document to the destination"></a>
         <a href="/api/destinations/delete/{{id}}"><img src="/images/delete.png"
                 alt="delete {{destination}} from trip"></a>
+        </h2>
     </div>
 </div>
