@@ -57,4 +57,5 @@ a {
   text-align: center;
   background-color: var(--baby-pink);
   color: var(--moody-pink);
+  width: 100%
 }
