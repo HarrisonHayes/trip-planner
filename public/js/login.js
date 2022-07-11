@@ -34,7 +34,7 @@ const signup = async (event) => {
   
   const validationResult =validateAccountInputs(name, email, password);
 
-  if (validationResult.length!==0) {
+  if (validationResult.length==0) {
     const response = await fetch('/api/users', {
       method: 'POST',
       body: jsonBody,
