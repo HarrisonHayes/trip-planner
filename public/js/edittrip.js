@@ -4,7 +4,6 @@ const capWord = (string) => {
     return '';
   }
   let stringArr = string.split(' ');
-  console.log(stringArr);
   for (let i = 0; i < stringArr.length; i++) {
     stringArr[i] = stringArr[i][0].toUpperCase() + stringArr[i].substr(1);
   }
@@ -63,7 +62,6 @@ const updateTrip = async (event) => {
   const validationResult = validateTripInputs(name, date_start, date_end);
   if (validationResult.length == 0) {
     const jsonBody = JSON.stringify({ id, name, date_start, date_end });
-    console.log(jsonBody);
 
     const response = await fetch('/api/trips/' + id, {
       method: 'PUT',
