@@ -8,10 +8,16 @@
   --dark: #000;
 }
 
+.header {
+background-color: var(--baby-pink);
+color: var(--dark);
+}
+
+
 body {
   background-color: var(--dark);
   color: var(--baby-pink);
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Comfortaa', cursive;
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -21,6 +27,7 @@ body {
 
 h2 {
   color: var(--pink);
+  background-color: var(--baby-pink);
 }
 
 /* .dest-border {
@@ -42,19 +49,45 @@ h2 {
 }
 
 .trip-page-title {
-  color: var(--baby-pink);
+  color: var(--pink);
+  background-color: var(--baby-pink);
   text-decoration: underline var(--pink);
   margin-bottom: 3%;
   margin-top: 2%;
   text-align: center;
 }
+.btn:hover {
+  background-color: var(--dark);
+  color: var(--baby-pink);
+}
 
 a {
-  color: var(--pastel);
+  color: var(--dark);
+ justify-content: center;
+}
+
+.trip-name {
+width: 100%
 }
 
 .destcard {
   text-align: center;
   background-color: var(--baby-pink);
   color: var(--moody-pink);
+}
+
+.footer {
+  color: var(--pink);
+  background-color: var(--baby-pink);
+  text-shadow: 0 0 7px var(--pastel),
+  0 0 10px var(--pastel),
+  0 0 21px var(--pastel),
+  0 0 42px var(--pastel),
+  0 0 82px var(--pastel),
+  0 0 92px var(--pastel),
+  0 0 102px var(--pastel),
+  0 0 151px var(--pastel); 
+  position: sticky;
+  top:0;
+  width: 100%
 }
