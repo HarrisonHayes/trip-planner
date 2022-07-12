@@ -98,7 +98,24 @@ a {
   margin-top: 3%;
   justify-content: flex-end;
 }
-
+.card-body{
+  text-align: center;
+  font-weight: bolder;
+  text-decoration: underline var(--pink);
+  background-color: var(--baby-pink);
+  color: var(--moody-pink);
+  width: 100%;
+  margin-bottom: 3%;
+  margin-top: 3%;
+  justify-content: flex-end;
+}
+.docs{
+  text-align: center;
+  font-weight: bolder;
+  text-decoration: underline var(--pink);
+  background-color: var(--baby-pink);
+  color: var(--moody-pink);
+}
 .h1 {
   height: 100vh;
   color: var(--pastel);
